@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepak Samraj Devaraj — Senior Infrastructure Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d12;
+    --surface: #111520;
+    --surface2: #161b27;
+    --border: rgba(255,255,255,0.06);
+    --accent: #00e5c3;
+    --accent2: #3d7fff;
+    --accent3: #ff6b35;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --muted2: #9aa0ad;
+    --gold: #f5c842;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 180px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,13,18,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO IMPACT ROWS ── */
+  .hero-impact-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+  .hero-impact-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    white-space: nowrap;
+    min-width: 7rem;
+    line-height: 1;
+  }
+  .hero-impact-unit {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted2);
+    margin-left: 1px;
+  }
+  .hero-impact-detail {
+    font-size: 0.85rem;
+    color: var(--muted2);
+    line-height: 1.6;
+  }
+
+  /* ── CERT BADGE STRIP ── */
+  .hero-cert-strip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .cert-strip-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .cert-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .cert-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .cert-badge:hover { transform: translateY(-1px); }
+  .cert-badge-brocade { color: #dd3333; border-color: rgba(220,50,50,0.3); background: rgba(220,50,50,0.06); }
+  .cert-badge-vmware  { color: #60b460; border-color: rgba(96,180,96,0.3);  background: rgba(96,180,96,0.06); }
+  .cert-badge-itil    { color: #9966dd; border-color: rgba(153,102,221,0.3); background: rgba(153,102,221,0.06); }
+  .cert-badge-ibm     { color: #5090e0; border-color: rgba(80,144,224,0.3);  background: rgba(80,144,224,0.06); }
+  .cert-badge-emc     { color: var(--accent); border-color: rgba(0,229,195,0.3); background: rgba(0,229,195,0.06); }
+  .cert-badge-aws     { color: var(--gold); border-color: rgba(245,200,66,0.3); background: rgba(245,200,66,0.06); border-style: dashed; }
+
+  /* ── HERO STATS (kept for reference, no longer used) ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* Animated background orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+  .orb-1 { width: 500px; height: 500px; background: rgba(0,229,195,0.07); top: -100px; right: -100px; animation-delay: 0s; }
+  .orb-2 { width: 400px; height: 400px; background: rgba(61,127,255,0.06); bottom: -50px; left: 100px; animation-delay: 3s; }
+  .orb-3 { width: 300px; height: 300px; background: rgba(245,200,66,0.04); top: 50%; left: 50%; animation-delay: 6s; }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(30px, -40px) scale(1.05); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-title {
+    font-family: 'IBM Plex Serif', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--muted2);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.55s;
+  }
+
+  .hero-summary {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted2);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .hero-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.85s;
+  }
+
+  .contact-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted2);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.02);
+  }
+  .contact-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,195,0.05); }
+  .contact-chip .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+  /* ── HERO RIGHT — STATS ── */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .stat-cell {
+    background: var(--surface);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,195,0.03), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .stat-cell:hover::after { opacity: 1; }
+
+  .stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .stat-cell.highlight { background: rgba(0,229,195,0.05); }
+  .stat-cell.highlight .stat-num { background: linear-gradient(135deg, var(--gold), var(--accent3)); -webkit-background-clip: text; background-clip: text; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { background: var(--surface); }
+  #achievements > * { max-width: 1200px; margin: 0 auto; }
+
+  .achievements-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .achievement-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .achievement-card:hover { transform: translateY(-4px); border-color: rgba(0,229,195,0.3); }
+
+  .achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .achievement-card:hover::before { opacity: 1; }
+
+  .achievement-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .achievement-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+  }
+
+  .achievement-desc {
+    font-size: 0.9rem;
+    color: var(--muted2);
+    line-height: 1.6;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .exp-card:hover { border-color: rgba(0,229,195,0.2); }
+
+  .exp-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 2rem;
+    cursor: pointer;
+  }
+
+  .exp-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 5px;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(0,229,195,0.5);
+  }
+  .exp-dot.dim { background: var(--muted); box-shadow: none; }
+
+  .exp-company {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-role {
+    font-size: 0.9rem;
+    color: var(--muted2);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    color: var(--muted2);
+    border: 1px solid var(--border);
+  }
+  .tag.accent { background: rgba(0,229,195,0.08); color: var(--accent); border-color: rgba(0,229,195,0.2); }
+
+  .exp-period {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .exp-country {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  /* Per-country colour accents */
+  .exp-country.country-ie { color: #27a560; background: rgba(39,165,96,0.08);  border-color: rgba(39,165,96,0.3);  }
+  .exp-country.country-sg { color: #e8304a; background: rgba(232,48,74,0.08);  border-color: rgba(232,48,74,0.3);  }
+  .exp-country.country-my { color: #f5c842; background: rgba(245,200,66,0.08); border-color: rgba(245,200,66,0.3); }
+  .exp-country.country-in { color: #ff8c42; background: rgba(255,140,66,0.08); border-color: rgba(255,140,66,0.3); }
+
+  .flag { font-size: 1.05rem; line-height: 1; }
+
+  .exp-dates {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-align: right;
+  }
+
+  /* ── GLOBAL WORK STRIP ── */
+  .global-strip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+  }
+  .global-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .global-countries {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .global-country {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .global-country.country-ie { color: #27a560; background: rgba(39,165,96,0.06);  border-color: rgba(39,165,96,0.2);  }
+  .global-country.country-sg { color: #e8304a; background: rgba(232,48,74,0.06);  border-color: rgba(232,48,74,0.2);  }
+  .global-country.country-my { color: #f5c842; background: rgba(245,200,66,0.06); border-color: rgba(245,200,66,0.2); }
+  .global-country.country-in { color: #ff8c42; background: rgba(255,140,66,0.06); border-color: rgba(255,140,66,0.2); }
+  .global-country:hover { transform: translateY(-1px); filter: brightness(1.2); }
+
+  .exp-body {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 2rem 0 3.5rem;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+  .exp-body.open {
+    max-height: 3000px;
+    padding: 0 2rem 2rem 3.5rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .exp-bullets li {
+    font-size: 0.9rem;
+    color: var(--muted2);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    position: relative;
+    max-height: 300px;
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+  }
+  .exp-bullets li.filtered-out {
+    max-height: 0 !important;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    pointer-events: none;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  .exp-toggle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    padding: 0 2rem 1.2rem 3.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .exp-toggle:hover { opacity: 1; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface2); }
+
+  .skills-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.8rem;
+  }
+
+  .skill-group-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .skill-pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    background: var(--surface2);
+    color: var(--muted2);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .skill-pill:hover { background: rgba(0,229,195,0.07); color: var(--accent); border-color: rgba(0,229,195,0.3); }
+
+  /* ── TIMELINE / PERFORMANCE RATINGS ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4.5px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(0,229,195,0.5);
+  }
+
+  .timeline-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .rating-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .rating-badge.performing { background: rgba(0,229,195,0.1); color: var(--accent); border: 1px solid rgba(0,229,195,0.2); }
+  .rating-badge.achieving { background: rgba(245,200,66,0.12); color: var(--gold); border: 1px solid rgba(245,200,66,0.25); }
+
+  .timeline-desc {
+    font-size: 0.9rem;
+    color: var(--muted2);
+    line-height: 1.7;
+  }
+
+  /* ── AWARDS ── */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .award-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.8rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .award-card:hover { transform: translateY(-3px); border-color: rgba(245,200,66,0.3); }
+
+  .award-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  .award-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .award-desc {
+    font-size: 0.82rem;
+    color: var(--muted2);
+    line-height: 1.6;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: border-color 0.3s;
+  }
+  .edu-card:hover { border-color: rgba(61,127,255,0.3); }
+
+  .edu-degree {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .edu-school {
+    font-size: 0.88rem;
+    color: var(--muted2);
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2rem;
+    font-style: italic;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .cert-card:hover { border-color: rgba(61,127,255,0.35); transform: translateY(-3px); }
+  .cert-card.cert-inprogress { border-style: dashed; border-color: rgba(245,200,66,0.25); }
+  .cert-card.cert-inprogress:hover { border-color: rgba(245,200,66,0.5); }
+
+  /* ── EXPERIENCE TIMELINE WRAPPER ── */
+  .exp-timeline-wrapper {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0 1.5rem;
+    position: relative;
+  }
+
+  .year-axis {
+    position: relative;
+    padding-top: 2rem;
+  }
+
+  .year-line {
+    position: absolute;
+    left: 50%;
+    top: 2rem;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), rgba(0,229,195,0.1));
+    transform: translateX(-50%);
+  }
+
+  .year-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .year-marker::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 6px rgba(0,229,195,0.4);
+  }
+
+  .year-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-top: 4px;
+  }
+
+  @media (max-width: 700px) {
+    .exp-timeline-wrapper { grid-template-columns: 1fr; }
+    .year-axis { display: none; }
+  }
+
+  /* ── CERT LOGO (image version) ── */
+  .cert-logo {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cert-logo img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .cert-logo-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .cert-brocade-fb { color: #dd3333; }
+  .cert-vmware-fb  { color: #60b460; }
+  .cert-itil-fb    { color: #9966dd; }
+  .cert-ibm-fb     { color: #5090e0; }
+  .cert-emc-fb     { color: #00a3e0; }
+  .cert-aws-fb     { color: #ff9900; }
+
+  .cert-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+    color: var(--text);
+  }
+  .cert-issuer {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted2);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.04em;
+  }
+  .cert-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+  .cert-inprogress .cert-date { color: var(--gold); }
+
+  /* ── SCROLL REVEAL — handled via JS inline styles ── */
+  .reveal { /* base — JS animates these */ }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-stats { order: -1; }
+    section { padding: 4rem 1.5rem; }
+    .achievements-wrapper, .skills-wrapper { padding: 4rem 1.5rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .exp-header { grid-template-columns: auto 1fr auto; }
+    .exp-dates { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .stat-cell { padding: 1.2rem; }
+    .stat-num { font-size: 1.8rem; }
+  }
+
+  /* ── DIVIDER ── */
+  .full-bleed {
+    margin: 0;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* ── TAG FILTER SYSTEM ── */
+  .tag-filter {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+  }
+  .tag-filter:hover { background: rgba(0,229,195,0.1); color: var(--accent); border-color: rgba(0,229,195,0.35); }
+  .tag-filter.active {
+    background: rgba(0,229,195,0.15);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(0,229,195,0.3);
+  }
+  .exp-bullets li.highlighted::before {
+    color: var(--gold);
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.6rem 2rem 1rem 3.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+
+  .filter-bar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 0.2rem;
+  }
+
+  .clear-filter {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--accent3);
+    cursor: pointer;
+    margin-left: 0.4rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .clear-filter.visible { opacity: 1; pointer-events: auto; }
+
+  /* ── CURSOR GLOW ── */
+  .cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,195,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transition: transform 0.1s;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DD//</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#achievements">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="about">
+<div style="min-height:100vh; display:flex; align-items:center; padding: 8rem 3rem 5rem; position:relative; overflow:hidden;">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div style="max-width:1200px; margin:0 auto; width:100%;">
+
+    <!-- Top: name + summary -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; margin-bottom:4rem;">
+      <div>
+        <p class="hero-eyebrow">// Senior Infrastructure Engineer · Dublin, Ireland</p>
+        <h1 class="hero-name">Deepak<br><span>Devaraj</span></h1>
+        <p class="hero-title">Cloud &amp; Storage Specialist</p>
+        <p class="hero-summary">15+ years designing and operating enterprise infrastructure across cloud migration, SAN/NAS storage, backup &amp; DR, and datacentre modernisation. Based in Dublin — open to senior infrastructure, cloud, and DevOps roles.</p>
+        <div class="hero-contacts">
+          <a href="/cdn-cgi/l/email-protection#b9dddcdcc9d8d2cad8d4f9ded4d8d0d597dad6d4" class="contact-chip"><span class="dot"></span><span class="__cf_email__" data-cfemail="e387868693828890828ea3848e828a8fcd808c8e">[email&#160;protected]</span></a>
+          <a href="https://linkedin.com/in/deepaksam" class="contact-chip" target="_blank"><span class="dot"></span>LinkedIn</a>
+          <a href="https://github.com/deepaksam" class="contact-chip" target="_blank"><span class="dot"></span>GitHub</a>
+          <span class="contact-chip"><span class="dot"></span>+353 85 868 6681</span>
+        </div>
+      </div>
+
+      <!-- Right: 3 focused, non-duplicating impact numbers -->
+      <div style="display:flex; flex-direction:column; gap:1.2rem; padding-top:0.5rem;">
+        <div class="hero-impact-row">
+          <div class="hero-impact-num">€850K<span class="hero-impact-unit">/mo</span></div>
+          <div class="hero-impact-detail">Total datacentre cost savings delivered across EU &amp; US consolidation programmes</div>
+        </div>
+        <div style="height:1px; background:var(--border);"></div>
+        <div class="hero-impact-row">
+          <div class="hero-impact-num">7<span class="hero-impact-unit">yrs</span></div>
+          <div class="hero-impact-detail">At Verizon Connect — 100% uptime maintained across mission-critical Reveal platform</div>
+        </div>
+        <div style="height:1px; background:var(--border);"></div>
+        <div class="hero-impact-row">
+          <div class="hero-impact-num">5<span class="hero-impact-unit">+</span></div>
+          <div class="hero-impact-detail">Industry certifications across Brocade, VMware, IBM, EMC &amp; ITIL spanning global roles</div>
+        </div>
+        <div style="height:1px; background:var(--border);"></div>
+        <div class="hero-impact-row">
+          <div class="hero-impact-num">500<span class="hero-impact-unit">+TB</span></div>
+          <div class="hero-impact-detail">Production data managed across multi-vendor SAN/NAS platforms in EU, US &amp; Italy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom: cert badge strip -->
+    <div class="hero-cert-strip reveal">
+      <span class="cert-strip-label">Certified ·</span>
+      <div class="cert-badge-row">
+        <span class="cert-badge cert-badge-brocade">BCFP · Brocade 16G</span>
+        <span class="cert-badge cert-badge-vmware">VCP · VMware vSphere</span>
+        <span class="cert-badge cert-badge-itil">ITIL v3 · EXIN</span>
+        <span class="cert-badge cert-badge-ibm">IBM · Tivoli SPC</span>
+        <span class="cert-badge cert-badge-emc">EMC · Professional Associate</span>
+        <span class="cert-badge cert-badge-aws">AWS SAA-C03 · In Progress</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- WHAT I DO -->
+<div id="achievements" style="background: var(--surface);">
+  <div class="achievements-wrapper">
+    <div class="reveal">
+      <p class="section-label">Areas of Expertise</p>
+      <h2 class="section-title">What I Do</h2>
+    </div>
+    <div class="achievements-grid reveal">
+      <div class="achievement-card">
+        <span class="achievement-icon">🏗️</span>
+        <div class="achievement-value">Datacentre Engineering</div>
+        <p class="achievement-desc">End-to-end DC build-outs, consolidations, and decomissions. Rack/stack, cabling, power, SAN fabric — from blueprint to operational handover in EU, US, and Italy.</p>
+      </div>
+      <div class="achievement-card">
+        <span class="achievement-icon">☁️</span>
+        <div class="achievement-value">Cloud Migration</div>
+        <p class="achievement-desc">Hybrid infrastructure migrations to AWS — EC2, S3, VPC, IAM. Commvault-to-cloud, domain migrations, and EC2 right-sizing with Splunk-driven cost analytics.</p>
+      </div>
+      <div class="achievement-card">
+        <span class="achievement-icon">💾</span>
+        <div class="achievement-value">Enterprise Storage</div>
+        <p class="achievement-desc">Deep hands-on expertise across EMC VMAX, Unity, XtremIO, Isilon, IBM SVC, HP 3PAR. SAN zoning, LUN masking, multipathing, and multi-site replication at scale.</p>
+      </div>
+      <div class="achievement-card">
+        <span class="achievement-icon">🛡️</span>
+        <div class="achievement-value">Backup &amp; Disaster Recovery</div>
+        <p class="achievement-desc">Commvault LiveSync HA with ≤15-min RPO across availability zones. DR planning, restore testing, policy design, and SOC2-compliant backup operations.</p>
+      </div>
+      <div class="achievement-card">
+        <span class="achievement-icon">⚙️</span>
+        <div class="achievement-value">Automation &amp; Tooling</div>
+        <p class="achievement-desc">Python/Flask applications, PowerShell scripting, Octopus Deploy runbooks, and Splunk dashboards — turning repetitive ops into automated, auditable workflows.</p>
+      </div>
+      <div class="achievement-card">
+        <span class="achievement-icon">🔒</span>
+        <div class="achievement-value">Security &amp; Compliance</div>
+        <p class="achievement-desc">SOC2 audit delivery, Okta SSO integration, CyberArk PAM, Tenable vulnerability remediation, and 30-day SSM patching compliance across global infrastructure.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">Career History</p>
+    <h2 class="section-title">Professional<br>Experience</h2>
+  </div>
+
+  <div class="exp-timeline-wrapper">
+
+    <!-- Vertical year axis -->
+    <div class="year-axis">
+      <div class="year-line"></div>
+      <div class="year-marker" style="top: 0%">        <span class="year-label">2025</span></div>
+      <div class="year-marker" style="top: 11.7%">     <span class="year-label">2018</span></div>
+      <div class="year-marker" style="top: 44.5%">     <span class="year-label">2016</span></div>
+      <div class="year-marker" style="top: 55.5%">     <span class="year-label">2014</span></div>
+      <div class="year-marker" style="top: 69%">       <span class="year-label">2013</span></div>
+      <div class="year-marker" style="top: 80%">       <span class="year-label">2010</span></div>
+      <div class="year-marker" style="top: 100%">      <span class="year-label">2008</span></div>
+    </div>
+
+    <div class="experience-list">
+
+    <!-- Verizon Connect -->
+    <div class="exp-card" id="vc-card">
+      <div class="exp-header">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-company">Verizon Connect</div>
+          <div class="exp-role">Senior Engineer Consultant — DevOps</div>
+          <div class="exp-tags" id="vc-tags">
+            <span class="tag accent">Current</span>
+            <span class="tag tag-filter" data-filter="aws">AWS</span>
+            <span class="tag tag-filter" data-filter="cloud">Cloud Migration</span>
+            <span class="tag tag-filter" data-filter="dc">DC Operations</span>
+            <span class="tag tag-filter" data-filter="commvault">Commvault</span>
+            <span class="tag tag-filter" data-filter="storage">EMC/Dell Storage</span>
+            <span class="tag tag-filter" data-filter="hyper-v">Hyper-V</span>
+            <span class="tag tag-filter" data-filter="automation">Automation</span>
+            <span class="tag tag-filter" data-filter="security">Security</span>
+            <span class="tag tag-filter" data-filter="splunk">Splunk</span>
+          </div>
+        </div>
+        <div class="exp-period">
+          <span class="exp-country country-ie">🇮🇪 Dublin, Ireland</span>
+          <span class="exp-dates">Jul 2018 — Dec 2025</span>
+        </div>
+      </div>
+      <div class="exp-body open">
+        <div class="filter-bar">
+          <span class="filter-bar-label">Filter by tag →</span>
+          <span class="clear-filter" id="vc-clear">✕ clear filter</span>
+        </div>
+        <ul class="exp-bullets" id="vc-bullets">
+          <!-- AWS -->
+          <li data-tags="aws cloud">Achieved &gt;50% AWS cost reduction through EC2 right-sizing, S3 Intelligent Tiering deployment, and EBS volume optimisation leveraging Splunk analytics.</li>
+          <li data-tags="aws cloud">Designed and implemented hybrid cloud architecture migrating on-premises DC infrastructure to AWS, including compute (EC2), storage (S3), and networking (VPC) components.</li>
+          <li data-tags="aws commvault">Implemented CommVault Cloud Media Agent Power Management using AWS automation, reducing operational costs through intelligent resource scheduling aligned with backup windows.</li>
+          <li data-tags="aws splunk">Developed Splunk dashboards for real-time cloud resource monitoring — EBS utilisation, EC2 performance metrics, and cost analytics — enabling data-driven optimisation decisions.</li>
+          <!-- Cloud Migration -->
+          <li data-tags="cloud commvault">Led migration of Commvault backup infrastructure and database workloads from on-premises to AWS, implementing S3-based disk libraries and automated auxiliary copy workflows.</li>
+          <li data-tags="cloud dc">Migrated entire Commvault infrastructure from legacy fleetmatics.host domain to AWS-native domains, improving security and cloud service integration.</li>
+          <!-- Commvault -->
+          <li data-tags="commvault">Architected and deployed Commvault LiveSync High Availability across EU and US, achieving ≤15-minute RPO with automatic failover across three availability zones.</li>
+          <li data-tags="commvault">Managed full Commvault lifecycle including automated patching compliance (30-day), DR testing, storage policy design, and Media Agent redeployments across 20+ servers.</li>
+          <li data-tags="commvault security">Integrated Commvault with Okta SSO and CyberArk for privileged access management, eliminating manual quarterly user access reviews through AccessHub automation.</li>
+          <li data-tags="commvault">Maintained 100% backup infrastructure availability (exceeding 99.97% SLA) through proactive monitoring, daily health checks, and rapid incident response. Cited as "best managed environment" by Commvault SAM/TAM (2023 QBR).</li>
+          <!-- DC Operations -->
+          <li data-tags="dc">Led EU datacentre consolidation decommissioning legacy VMAX, XtremIO, and Isilon arrays, achieving €574K/month savings. Directed US Flexential DC consolidation saving $280K/month.</li>
+          <li data-tags="dc">Completed Italian datacentre build-out from site preparation through operational handover, deploying 7,200 Tacho card slots, cabling infrastructure, power distribution, and backup storage systems.</li>
+          <li data-tags="dc">Performed extensive rack/stack operations deploying 7,000+ devices including servers, storage arrays, network switches, and specialised card reader infrastructure across EU/US/Italy.</li>
+          <li data-tags="dc">Coordinated cross-functional teams (network, systems, facilities) ensuring proper ITIL-based change management procedures during major infrastructure transitions with zero unplanned downtime.</li>
+          <!-- EMC/Dell Storage -->
+          <li data-tags="storage">Owned and operated enterprise SAN/NAS platforms including EMC VMAX, Unity, XtremIO, and Isilon supporting 500+ TB of production data — volume/LUN creation, host mapping, multipathing, and data replication.</li>
+          <li data-tags="storage">Architected SAN fabric including Brocade and Cisco Fibre Channel fabrics, SAN zoning, LUN masking, and multipathing across heterogeneous storage environments.</li>
+          <li data-tags="storage dc">Led storage platform migrations (VMAX to Unity, Isilon to Unity) with comprehensive testing, validation, and performance tuning to ensure seamless transitions.</li>
+          <li data-tags="storage dc">Implemented Cisco ACI integration for Unity NAS backup targets, configuring SFTP backup workflows and network fabric connectivity for Cisco infrastructure in Milan DC.</li>
+          <li data-tags="storage">Performed storage array code upgrades (Unity, Isilon, Brocade) addressing Dell Security Advisories (DSAs) with zero downtime through meticulous planning and execution.</li>
+          <!-- Hyper-V -->
+          <li data-tags="hyper-v dc">Deployed and operated Microsoft Hyper-V environments across EU/US datacentres, managing Windows Server failover clusters, VM lifecycle, and high availability configurations.</li>
+          <li data-tags="hyper-v">Planned and executed 200+ VM migrations including live migration operations with zero service disruption across Hyper-V clusters and Windows Server 2012 to 2019/2022 upgrades.</li>
+          <li data-tags="hyper-v">Conducted risk assessments and created detailed migration strategies including CABs, rollback procedures, validation checkpoints, and post-migration performance tuning plans.</li>
+          <!-- Automation -->
+          <li data-tags="automation splunk">Developed Python/Flask Tacho Dashboard automating card status monitoring across 7,200+ slots, reducing manual validation effort by 80%.</li>
+          <li data-tags="automation">Developed PowerShell automation for Windows Server and Hyper-V management, including automated patching workflows using Octopus Deploy and AWS SSM compliance tracking.</li>
+          <li data-tags="automation splunk">Built and maintained monitoring infrastructure using OpManager and Splunk, analysing system trends to proactively identify performance bottlenecks and capacity constraints.</li>
+          <li data-tags="automation">Automated Commvault SSM patching using Octopus Deploy runbooks, ensuring 30-day compliance across all infrastructure servers in EU and US.</li>
+          <!-- Security -->
+          <li data-tags="security">Ensured SOC2 compliance through RBAC improvements, enhanced audit reporting, and implementation of automated backup failure alerting via JIRA integration.</li>
+          <li data-tags="security">Remediated critical vulnerabilities including Log4Shell, SQL Server EOL, and multiple Dell Security Advisories through coordinated patching and configuration hardening.</li>
+          <li data-tags="security">Maintained consistent Tenable vulnerability remediation, reducing Critical/High findings to near-zero through proactive security monitoring across all managed infrastructure.</li>
+          <!-- Splunk -->
+          <li data-tags="splunk aws">Created comprehensive Splunk dashboards for EBS volume right-sizing, CPU/memory analytics, and AWS cost optimisation across all accounts and regions.</li>
+        </ul>
+      </div>
+      <div class="exp-toggle">Collapse ↑</div>
+    </div>
+
+    <!-- nSearch Global -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-dot dim"></div>
+        <div>
+          <div class="exp-company">nSearch Global Pte Ltd</div>
+          <div class="exp-role">Storage Engineer — Data Migration & HA Deployment</div>
+          <div class="exp-tags">
+            <span class="tag">EMC VMAX</span>
+            <span class="tag">IBM A9000R</span>
+            <span class="tag">VPLEX</span>
+            <span class="tag">RecoverPoint</span>
+          </div>
+        </div>
+        <div class="exp-period">
+          <span class="exp-country country-sg">🇸🇬 Singapore</span>
+          <span class="exp-dates">Dec 2016 — Oct 2017</span>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Led APAC datacentre migration from EMC VMAX to IBM A9000R, delivering HA storage solutions across multiple sites.</li>
+          <li>Implemented VPLEX Active-Active, AppSync, and RecoverPoint-based DR architectures for mission-critical applications.</li>
+        </ul>
+      </div>
+      <div class="exp-toggle">Expand ↓</div>
+    </div>
+
+    <!-- AIG -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-dot dim"></div>
+        <div>
+          <div class="exp-company">AIG Global Services</div>
+          <div class="exp-role">IT Technical Analyst III — Storage</div>
+          <div class="exp-tags">
+            <span class="tag">EMC Symmetrix</span>
+            <span class="tag">VPLEX</span>
+            <span class="tag">VMAX</span>
+            <span class="tag">VNX</span>
+          </div>
+        </div>
+        <div class="exp-period">
+          <span class="exp-country country-my">🇲🇾 Kuala Lumpur, Malaysia</span>
+          <span class="exp-dates">Oct 2014 — Jul 2016</span>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Supported global multi-vendor storage platforms across 10+ international sites.</li>
+          <li>Optimised storage performance using FAST policies and capacity planning, reducing storage costs by 25%.</li>
+        </ul>
+      </div>
+      <div class="exp-toggle">Expand ↓</div>
+    </div>
+
+    <!-- IBM India -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-dot dim"></div>
+        <div>
+          <div class="exp-company">IBM India Private Limited</div>
+          <div class="exp-role">Systems Administrator — Storage SME</div>
+          <div class="exp-tags">
+            <span class="tag">IBM DS8000</span>
+            <span class="tag">FlashCopy</span>
+            <span class="tag">DR</span>
+          </div>
+        </div>
+        <div class="exp-period">
+          <span class="exp-country country-in"><span class="flag">🇮🇳</span> India</span>
+          <span class="exp-dates">Apr 2013 — Aug 2014</span>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Delivered large-scale server build and migration projects for revenue-generating platforms supporting 1000+ servers.</li>
+          <li>Implemented IBM storage solutions and structured DR procedures using FlashCopy, achieving 4-hour RTO.</li>
+        </ul>
+      </div>
+      <div class="exp-toggle">Expand ↓</div>
+    </div>
+
+    <!-- HP -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-dot dim"></div>
+        <div>
+          <div class="exp-company">Hewlett Packard</div>
+          <div class="exp-role">IT Service Delivery Consultant — L3 Support</div>
+          <div class="exp-tags">
+            <span class="tag">HP 3PAR</span>
+            <span class="tag">EVA</span>
+            <span class="tag">Online Import</span>
+          </div>
+        </div>
+        <div class="exp-period">
+          <span class="exp-country country-in"><span class="flag">🇮🇳</span> India</span>
+          <span class="exp-dates">Dec 2010 — Mar 2013</span>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Migrated EVA 6400 to 3PAR StoreServ using Online Import technology with zero downtime for 24/7 environments.</li>
+          <li>Root cause analysis and stability improvements across heterogeneous arrays, reducing incidents by 40%.</li>
+        </ul>
+      </div>
+      <div class="exp-toggle">Expand ↓</div>
+    </div>
+
+    <!-- IBM Early -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-dot dim"></div>
+        <div>
+          <div class="exp-company">IBM India Private Limited</div>
+          <div class="exp-role">System Operations Lead Specialist</div>
+          <div class="exp-tags">
+            <span class="tag">EMC Clariion</span>
+            <span class="tag">IBM SVC</span>
+            <span class="tag">DS8000</span>
+          </div>
+        </div>
+        <div class="exp-period">
+          <span class="exp-country country-in"><span class="flag">🇮🇳</span> India</span>
+          <span class="exp-dates">Sep 2008 — Dec 2010</span>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Improved capacity utilisation by 35% through reclamation of unused LUNs and consolidation onto cost-effective storage tiers.</li>
+          <li>Led EMC Clariion to IBM SVC/DS8000 migration, improving environment performance for 500+ servers.</li>
+        </ul>
+      </div>
+      <div class="exp-toggle">Expand ↓</div>
+    </div>
+
+  </div><!-- end experience-list -->
+  </div><!-- end exp-timeline-wrapper -->
+</section>
+<div id="skills" style="background: var(--surface2);">
+  <div class="skills-wrapper">
+    <div class="reveal">
+      <p class="section-label">Technical Expertise</p>
+      <h2 class="section-title">Core Skills</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">☁ Cloud & Virtualisation</div>
+        <div class="skill-items">
+          <span class="skill-pill">AWS EC2</span>
+          <span class="skill-pill">S3</span>
+          <span class="skill-pill">IAM</span>
+          <span class="skill-pill">VPC</span>
+          <span class="skill-pill">Route 53</span>
+          <span class="skill-pill">CloudWatch</span>
+          <span class="skill-pill">VMware vCenter</span>
+          <span class="skill-pill">ESXi</span>
+          <span class="skill-pill">Hyper-V</span>
+          <span class="skill-pill">Windows 2022</span>
+          <span class="skill-pill">Linux RHEL</span>
+          <span class="skill-pill">Ubuntu</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">💽 Enterprise Storage</div>
+        <div class="skill-items">
+          <span class="skill-pill">EMC VMAX</span>
+          <span class="skill-pill">VNX</span>
+          <span class="skill-pill">Unity</span>
+          <span class="skill-pill">XtremIO</span>
+          <span class="skill-pill">Isilon</span>
+          <span class="skill-pill">IBM SVC</span>
+          <span class="skill-pill">DS8000</span>
+          <span class="skill-pill">A9000R</span>
+          <span class="skill-pill">VPLEX</span>
+          <span class="skill-pill">HP 3PAR</span>
+          <span class="skill-pill">SAN/NAS Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">🛡 Backup & DR</div>
+        <div class="skill-items">
+          <span class="skill-pill">Commvault LiveSync</span>
+          <span class="skill-pill">Media Agent</span>
+          <span class="skill-pill">S3 Tiering</span>
+          <span class="skill-pill">AUX Copy</span>
+          <span class="skill-pill">DR Planning</span>
+          <span class="skill-pill">RecoverPoint</span>
+          <span class="skill-pill">AppSync</span>
+          <span class="skill-pill">FlashCopy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">🔌 Networking & SAN</div>
+        <div class="skill-items">
+          <span class="skill-pill">Brocade FC</span>
+          <span class="skill-pill">Cisco ACI</span>
+          <span class="skill-pill">SAN Zoning</span>
+          <span class="skill-pill">LUN Masking</span>
+          <span class="skill-pill">Multipathing</span>
+          <span class="skill-pill">PowerPath</span>
+          <span class="skill-pill">iSCSI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">⚙ Automation & Dev</div>
+        <div class="skill-items">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">PowerShell</span>
+          <span class="skill-pill">PowerCLI</span>
+          <span class="skill-pill">Ansible</span>
+          <span class="skill-pill">Octopus Deploy</span>
+          <span class="skill-pill">Git/GitHub</span>
+          <span class="skill-pill">AWS SSM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">📊 Monitoring & Security</div>
+        <div class="skill-items">
+          <span class="skill-pill">Splunk</span>
+          <span class="skill-pill">OpManager</span>
+          <span class="skill-pill">SolarWinds</span>
+          <span class="skill-pill">Tenable</span>
+          <span class="skill-pill">CyberArk</span>
+          <span class="skill-pill">Okta SSO</span>
+          <span class="skill-pill">SOC2</span>
+          <span class="skill-pill">JIRA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AWARDS -->
+<div style="background: var(--surface);">
+  <div style="max-width:1200px; margin:0 auto; padding: 6rem 3rem;">
+    <div class="reveal">
+      <p class="section-label">Recognition</p>
+      <h2 class="section-title">Awards &<br>Recognition</h2>
+    </div>
+    <div class="awards-grid reveal">
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <div>
+          <div class="award-name">Innovation Day Winner 2024</div>
+          <div class="award-desc">Led winning team with AWS AI ChatBot concept, recognised as "Most Innovative Idea" at Verizon Connect Innovation Day.</div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">⭐</div>
+        <div>
+          <div class="award-name">Achieving Performance 2024</div>
+          <div class="award-desc">Recognised for exceptional project delivery and cost optimisation achievements including >50% AWS cost reduction.</div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">💎</div>
+        <div>
+          <div class="award-name">Commvault Excellence</div>
+          <div class="award-desc">Environment cited as "best managed of all customers" by Commvault SAM/TAM during 2023 QBR.</div>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">📈</div>
+        <div>
+          <div class="award-name">Consistent Performer 2021–2023</div>
+          <div class="award-desc">Delivered 65%+ of all strategic, scale, and RTB projects year-over-year across three consecutive review cycles.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="reveal">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title">Certifications</h2>
+  </div>
+  <div class="certs-grid reveal">
+
+    <div class="cert-card">
+      <div class="cert-logo">
+        <img src="https://logo.clearbit.com/broadcom.com" alt="Brocade" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cert-logo-fallback cert-brocade-fb" style="display:none">BCFP</div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">Brocade Certified Fabric Professional 16G</div>
+        <div class="cert-issuer">Brocade Communications</div>
+        <div class="cert-date">Issued Aug 2012</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-logo">
+        <img src="https://logo.clearbit.com/vmware.com" alt="VMware" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cert-logo-fallback cert-vmware-fb" style="display:none">VCP</div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">VMware Certified Professional — vSphere 4</div>
+        <div class="cert-issuer">VMware</div>
+        <div class="cert-date">Issued Aug 2010</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-logo">
+        <img src="https://logo.clearbit.com/exin.com" alt="EXIN" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cert-logo-fallback cert-itil-fb" style="display:none">ITIL</div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">ITIL Foundations v3</div>
+        <div class="cert-issuer">EXIN</div>
+        <div class="cert-date">Issued Jul 2011</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-logo">
+        <img src="https://logo.clearbit.com/ibm.com" alt="IBM" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cert-logo-fallback cert-ibm-fb" style="display:none">IBM</div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">IBM Certified Deployment Professional — Tivoli Storage Productivity Center 4.1</div>
+        <div class="cert-issuer">IBM</div>
+        <div class="cert-date">Issued Mar 2010</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-logo">
+        <img src="https://logo.clearbit.com/dell.com" alt="Dell EMC" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cert-logo-fallback cert-emc-fb" style="display:none">EMC</div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">EMC Professional Associate</div>
+        <div class="cert-issuer">EMC Corporation</div>
+        <div class="cert-date">Issued Jul 2010</div>
+      </div>
+    </div>
+
+    <div class="cert-card cert-inprogress">
+      <div class="cert-logo">
+        <img src="https://logo.clearbit.com/aws.amazon.com" alt="AWS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="cert-logo-fallback cert-aws-fb" style="display:none">AWS</div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">AWS Solutions Architect Associate (SAA-C03)</div>
+        <div class="cert-issuer">Amazon Web Services</div>
+        <div class="cert-date">In Progress</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <p class="section-label">Education & Development</p>
+    <h2 class="section-title">Qualifications</h2>
+  </div>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-degree">PGDip in Cloud Computing Technologies</div>
+      <div class="edu-school">Atlantic Technological University (ATU), Letterkenny, Ireland</div>
+      <div class="edu-year">Completed September 2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">B.E. — Electronics & Communication Engineering</div>
+      <div class="edu-school">Kongu Engineering College, Anna University, India</div>
+      <div class="edu-year">2002 — 2006</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Commvault Core Fundamentals</div>
+      <div class="edu-school">Pluralsight & Commvault Education</div>
+      <div class="edu-year">Professional Certification</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">AWS Solution Architect Training</div>
+      <div class="edu-school">Amazon Web Services</div>
+      <div class="edu-year">In Progress</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Deepak Samraj Devaraj</div>
+  <div style="font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted2);">Senior Infrastructure Engineer · Dublin, Ireland</div>
+  <div class="footer-links">
+    <a href="/cdn-cgi/l/email-protection#dcb8b9b9acbdb7afbdb19cbbb1bdb5b0f2bfb3b1"><span class="__cf_email__" data-cfemail="4c2829293c2d273f2d210c2b212d2520622f2321">[email&#160;protected]</span></a>
+    <a href="https://linkedin.com/in/deepaksam" target="_blank">LinkedIn</a>
+    <a href="https://github.com/deepaksam" target="_blank">GitHub</a>
+    <a href="tel:+353858686681">+353 85 868 6681</a>
+  </div>
+  <p class="footer-note">
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted); opacity:0.6;">
+      $ git commit -m <span style="color:var(--accent);">"walking by faith, scaling by design"</span> &nbsp;·&nbsp;
+      <span style="color:var(--muted2);">// Ephesians 3:20 &mdash; exceedingly, abundantly above</span> &nbsp;·&nbsp;
+      <span style="color:var(--muted); opacity:0.5;">built with Claude</span>
+    </span>
+  </p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Cursor glow ──
+  const glow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  // ── Single delegated listener for ALL experience card interactions ──
+  // activeFilters maps cardId → Set of active filter strings
+  const activeFilters = {};
+
+  document.querySelector('.experience-list').addEventListener('click', function(e) {
+
+    // ① CLEAR FILTER BUTTON
+    if (e.target.closest('.clear-filter')) {
+      const card = e.target.closest('.exp-card');
+      activeFilters[card.id] = new Set();
+      card.querySelectorAll('.tag-filter').forEach(t => t.classList.remove('active'));
+      card.querySelectorAll('.exp-bullets li').forEach(li => li.classList.remove('filtered-out','highlighted'));
+      card.querySelector('.clear-filter').classList.remove('visible');
+      return;
+    }
+
+    // ② TAG FILTER CHIP — multi-select
+    if (e.target.closest('.tag-filter')) {
+      const tagEl  = e.target.closest('.tag-filter');
+      const card   = tagEl.closest('.exp-card');
+      const id     = card.id;
+      const filter = tagEl.dataset.filter;
+      const clearBtn = card.querySelector('.clear-filter');
+
+      // Init set for this card
+      if (!activeFilters[id]) activeFilters[id] = new Set();
+      const filters = activeFilters[id];
+
+      // Toggle this tag in/out of the active set
+      if (filters.has(filter)) {
+        filters.delete(filter);
+        tagEl.classList.remove('active');
+      } else {
+        filters.add(filter);
+        tagEl.classList.add('active');
+      }
+
+      // Show/hide clear button
+      if (clearBtn) clearBtn.classList.toggle('visible', filters.size > 0);
+
+      // Apply filter to bullets
+      card.querySelectorAll('.exp-bullets li').forEach(li => {
+        if (filters.size === 0) {
+          // No filters active — show everything
+          li.classList.remove('filtered-out', 'highlighted');
+        } else {
+          const liTags = new Set((li.dataset.tags || '').split(' '));
+          // Show bullet if it matches ANY of the active filters
+          const matches = [...filters].some(f => liTags.has(f));
+          li.classList.toggle('filtered-out', !matches);
+          li.classList.toggle('highlighted', matches);
+        }
+      });
+      return;
+    }
+
+    // ③ EXPAND / COLLAPSE — header or toggle label
+    if (e.target.closest('.exp-header') || e.target.closest('.exp-toggle')) {
+      const card     = e.target.closest('.exp-card');
+      const body     = card.querySelector('.exp-body');
+      const toggleEl = card.querySelector('.exp-toggle');
+      const isOpen   = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      toggleEl.textContent = isOpen ? 'Expand ↓' : 'Collapse ↑';
+    }
+  });
+
+  // ── Scroll reveal (only on non-interactive elements) ──
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+           e.target.style.transform = 'translateY(0)';
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
