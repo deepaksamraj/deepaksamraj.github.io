@@ -1,4 +1,4 @@
-# deepaksam.github.io
+# deepaksamraj.github.io
 
 > Personal resume website — built as a single-file, zero-dependency HTML/CSS/JS page.
 
@@ -39,4 +39,5 @@ All content lives in `index.html` — sections are marked with comments like `<!
 No install step. Just edit and push.
 
 ---
+
 
