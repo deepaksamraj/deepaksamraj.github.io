@@ -39,5 +39,3 @@ All content lives in `index.html` — sections are marked with comments like `<!
 No install step. Just edit and push.
 
 ---
-
-
