@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deepak Samraj Devaraj — Senior Infrastructure Engineer</title>
+<title>Deepak Samraj Devaraj — Infrastructure & DevOps Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -974,7 +974,37 @@
     color: var(--accent);
     letter-spacing: 0.06em;
   }
-  .cert-inprogress .cert-date { color: var(--gold); }
+  .cert-card.cert-expired {
+    opacity: 0.6;
+    border-color: rgba(255,255,255,0.06);
+  }
+  .cert-card.cert-expired:hover {
+    opacity: 0.8;
+    border-color: rgba(255,255,255,0.12);
+    transform: none;
+  }
+  .cert-status-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    font-weight: 600;
+  }
+  .cert-status-badge.expired {
+    color: #e08040;
+    background: rgba(224,128,64,0.1);
+    border: 1px solid rgba(224,128,64,0.25);
+  }
+  .cert-status-badge.retired {
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .cert-date-expired { color: var(--muted) !important; }
 
   /* ── CONTACT MODAL ── */
   .modal-overlay {
@@ -1103,7 +1133,73 @@
   }
   .footer-contact-btn:hover { color: var(--accent); }
 
-  /* ── SCROLL REVEAL — handled via JS inline styles ── */
+  .skill-pill-learning {
+    background: rgba(245,200,66,0.08);
+    color: var(--gold);
+    border-color: rgba(245,200,66,0.25);
+    border-style: dashed;
+  }
+  .skill-studying {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    background: rgba(245,200,66,0.1);
+    border: 1px dashed rgba(245,200,66,0.3);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    font-weight: 500;
+  }
+
+  /* ── CURRENTLY LEARNING ── */
+  .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+  .learning-card {
+    background: var(--surface);
+    border: 1px dashed rgba(245,200,66,0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .learning-card:hover { border-color: rgba(245,200,66,0.45); transform: translateY(-3px); }
+  .learning-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .learning-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .learning-desc {
+    font-size: 0.82rem;
+    color: var(--muted2);
+    line-height: 1.6;
+  }
+  .learning-status {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    background: rgba(245,200,66,0.08);
+    border: 1px dashed rgba(245,200,66,0.25);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
   .reveal { /* base — JS animates these */ }
 
   /* ── RESPONSIVE ── */
@@ -1117,6 +1213,31 @@
     .edu-grid { grid-template-columns: 1fr; }
     .exp-header { grid-template-columns: auto 1fr auto; }
     .exp-dates { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    /* Hero — stack to single column */
+    div[style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 2.5rem !important;
+    }
+    /* Hero padding */
+    div[style*="min-height:100vh"] {
+      padding: 6rem 1.5rem 3rem !important;
+    }
+    .hero-name { font-size: 3rem; }
+    .hero-impact-row { gap: 1rem; }
+    .hero-impact-num { font-size: 1.6rem; min-width: 5.5rem; }
+    .hero-cert-strip { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .cert-badge-row { gap: 0.4rem; }
+    section { padding: 3rem 1.25rem; }
+    .achievements-wrapper, .skills-wrapper { padding: 3rem 1.25rem; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .learning-grid { grid-template-columns: 1fr; }
+    div[style*="grid-template-columns: 1fr 1fr; gap: 4rem"] {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
   }
 
   @media (max-width: 600px) {
@@ -1209,6 +1330,7 @@
     <li><a href="#achievements">Expertise</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#learning">Learning</a></li>
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#education">Education</a></li>
   </ul>
@@ -1226,10 +1348,10 @@
     <!-- Top: name + summary -->
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; margin-bottom:4rem;">
       <div>
-        <p class="hero-eyebrow">// Senior Infrastructure Engineer · Dublin, Ireland</p>
+        <p class="hero-eyebrow">// Infrastructure & DevOps Engineer · Dublin, Ireland</p>
         <h1 class="hero-name">Deepak<br><span>Devaraj</span></h1>
-        <p class="hero-title">Cloud &amp; Storage Specialist</p>
-        <p class="hero-summary">15+ years designing and operating enterprise infrastructure across cloud migration, SAN/NAS storage, backup &amp; DR, and datacentre modernisation. Based in Dublin — open to senior infrastructure, cloud, and DevOps roles.</p>
+        <p class="hero-title">Cloud · DevOps · Infrastructure</p>
+        <p class="hero-summary">15+ years operating enterprise infrastructure at scale — now building cloud-native. Deep expertise in AWS, automation, and multi-site DC operations, backed by hands-on study of Terraform, Docker, Kubernetes, and Azure. Based in Dublin — open to DevOps, Cloud, and Infrastructure Engineering roles.</p>
         <div class="hero-contacts">
           <button class="contact-chip contact-btn" onclick="document.getElementById('contactModal').classList.add('open')"><span class="dot"></span>Get in Touch</button>
           <a href="https://linkedin.com/in/deepaksam" class="contact-chip" target="_blank"><span class="dot"></span>LinkedIn</a>
@@ -1287,34 +1409,34 @@
     </div>
     <div class="achievements-grid reveal">
       <div class="achievement-card">
-        <span class="achievement-icon">🏗️</span>
-        <div class="achievement-value">Datacentre Engineering</div>
-        <p class="achievement-desc">End-to-end DC build-outs, consolidations, and decomissions. Rack/stack, cabling, power, SAN fabric — from blueprint to operational handover in EU, US, and Italy.</p>
+        <span class="achievement-icon">🚀</span>
+        <div class="achievement-value">DevOps & Automation</div>
+        <p class="achievement-desc">Python/Flask tooling, PowerShell, Ansible playbooks, Octopus Deploy, and AWS SSM — converting manual ops into automated, auditable pipelines. 80% effort reduction on card farm management.</p>
       </div>
       <div class="achievement-card">
         <span class="achievement-icon">☁️</span>
-        <div class="achievement-value">Cloud Migration</div>
-        <p class="achievement-desc">Hybrid infrastructure migrations to AWS — EC2, S3, VPC, IAM. Commvault-to-cloud, domain migrations, and EC2 right-sizing with Splunk-driven cost analytics.</p>
+        <div class="achievement-value">Cloud Engineering</div>
+        <p class="achievement-desc">AWS migrations, EC2/S3/VPC/IAM architecture, hybrid cloud design, and cost optimisation using Splunk-driven analytics. Studying Terraform IaC, Azure, and GitHub Actions CI/CD.</p>
       </div>
       <div class="achievement-card">
-        <span class="achievement-icon">💾</span>
-        <div class="achievement-value">Enterprise Storage</div>
-        <p class="achievement-desc">Deep hands-on expertise across EMC VMAX, Unity, XtremIO, Isilon, IBM SVC, HP 3PAR. SAN zoning, LUN masking, multipathing, and multi-site replication at scale.</p>
+        <span class="achievement-icon">📦</span>
+        <div class="achievement-value">Containers & IaC</div>
+        <p class="achievement-desc">Actively building with Docker and Kubernetes for containerised workloads, and Terraform for infrastructure-as-code. Grounded in the underlying systems these tools run on.</p>
+      </div>
+      <div class="achievement-card">
+        <span class="achievement-icon">🏗️</span>
+        <div class="achievement-value">Infrastructure Operations</div>
+        <p class="achievement-desc">End-to-end DC build-outs, server virtualisation (Hyper-V/VMware), SAN/NAS platforms, and 500+ VM migrations — all delivered with zero unplanned downtime.</p>
       </div>
       <div class="achievement-card">
         <span class="achievement-icon">🛡️</span>
-        <div class="achievement-value">Backup &amp; Disaster Recovery</div>
-        <p class="achievement-desc">Commvault LiveSync HA with ≤15-min RPO across availability zones. DR planning, restore testing, policy design, and SOC2-compliant backup operations.</p>
+        <div class="achievement-value">Resilience & DR</div>
+        <p class="achievement-desc">Commvault LiveSync HA achieving ≤15-min RPO across 3 AZs. SOC2 compliance, Okta/CyberArk integration, Tenable remediation, and 100% uptime across 4 years at Verizon Connect.</p>
       </div>
       <div class="achievement-card">
-        <span class="achievement-icon">⚙️</span>
-        <div class="achievement-value">Automation &amp; Tooling</div>
-        <p class="achievement-desc">Python/Flask applications, PowerShell scripting, Octopus Deploy runbooks, and Splunk dashboards — turning repetitive ops into automated, auditable workflows.</p>
-      </div>
-      <div class="achievement-card">
-        <span class="achievement-icon">🔒</span>
-        <div class="achievement-value">Security &amp; Compliance</div>
-        <p class="achievement-desc">SOC2 audit delivery, Okta SSO integration, CyberArk PAM, Tenable vulnerability remediation, and 30-day SSM patching compliance across global infrastructure.</p>
+        <span class="achievement-icon">💰</span>
+        <div class="achievement-value">Cost Engineering</div>
+        <p class="achievement-desc">€850K/month in DC consolidation savings across EU and US. >50% AWS cost reduction through EC2 right-sizing, S3 Intelligent Tiering, and EBS analytics — measured, not estimated.</p>
       </div>
     </div>
   </div>
@@ -1566,7 +1688,21 @@
     </div>
     <div class="skills-grid reveal">
       <div class="skill-group">
-        <div class="skill-group-title">☁ Cloud & Virtualisation</div>
+        <div class="skill-group-title">⚙ Automation & DevOps</div>
+        <div class="skill-items">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">PowerShell</span>
+          <span class="skill-pill">Ansible</span>
+          <span class="skill-pill">Octopus Deploy</span>
+          <span class="skill-pill">AWS SSM</span>
+          <span class="skill-pill">Git / GitHub</span>
+          <span class="skill-pill">GitHub Actions</span>
+          <span class="skill-pill">JIRA</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">☁ Cloud Platforms</div>
         <div class="skill-items">
           <span class="skill-pill">AWS EC2</span>
           <span class="skill-pill">S3</span>
@@ -1574,25 +1710,30 @@
           <span class="skill-pill">VPC</span>
           <span class="skill-pill">Route 53</span>
           <span class="skill-pill">CloudWatch</span>
+          <span class="skill-pill">Azure</span>
+          <span class="skill-pill">AWS SSM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">📦 IaC & Containers <span class="skill-studying">studying</span></div>
+        <div class="skill-items">
+          <span class="skill-pill skill-pill-learning">Terraform</span>
+          <span class="skill-pill skill-pill-learning">Docker</span>
+          <span class="skill-pill skill-pill-learning">Kubernetes</span>
+          <span class="skill-pill skill-pill-learning">Azure IaC</span>
           <span class="skill-pill">VMware vCenter</span>
-          <span class="skill-pill">ESXi</span>
           <span class="skill-pill">Hyper-V</span>
-          <span class="skill-pill">Windows 2022</span>
-          <span class="skill-pill">Linux RHEL</span>
-          <span class="skill-pill">Ubuntu</span>
+          <span class="skill-pill">ESXi</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-title">💽 Enterprise Storage</div>
         <div class="skill-items">
           <span class="skill-pill">EMC VMAX</span>
-          <span class="skill-pill">VNX</span>
           <span class="skill-pill">Unity</span>
           <span class="skill-pill">XtremIO</span>
           <span class="skill-pill">Isilon</span>
           <span class="skill-pill">IBM SVC</span>
-          <span class="skill-pill">DS8000</span>
-          <span class="skill-pill">A9000R</span>
           <span class="skill-pill">VPLEX</span>
           <span class="skill-pill">HP 3PAR</span>
           <span class="skill-pill">SAN/NAS Design</span>
@@ -1602,38 +1743,10 @@
         <div class="skill-group-title">🛡 Backup & DR</div>
         <div class="skill-items">
           <span class="skill-pill">Commvault LiveSync</span>
-          <span class="skill-pill">Media Agent</span>
           <span class="skill-pill">S3 Tiering</span>
-          <span class="skill-pill">AUX Copy</span>
           <span class="skill-pill">DR Planning</span>
           <span class="skill-pill">RecoverPoint</span>
-          <span class="skill-pill">AppSync</span>
           <span class="skill-pill">FlashCopy</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">🔌 Networking & SAN</div>
-        <div class="skill-items">
-          <span class="skill-pill">Brocade FC</span>
-          <span class="skill-pill">Cisco ACI</span>
-          <span class="skill-pill">SAN Zoning</span>
-          <span class="skill-pill">LUN Masking</span>
-          <span class="skill-pill">Multipathing</span>
-          <span class="skill-pill">PowerPath</span>
-          <span class="skill-pill">iSCSI</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">⚙ Automation & Dev</div>
-        <div class="skill-items">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">Flask</span>
-          <span class="skill-pill">PowerShell</span>
-          <span class="skill-pill">PowerCLI</span>
-          <span class="skill-pill">Ansible</span>
-          <span class="skill-pill">Octopus Deploy</span>
-          <span class="skill-pill">Git/GitHub</span>
-          <span class="skill-pill">AWS SSM</span>
         </div>
       </div>
       <div class="skill-group">
@@ -1641,17 +1754,74 @@
         <div class="skill-items">
           <span class="skill-pill">Splunk</span>
           <span class="skill-pill">OpManager</span>
-          <span class="skill-pill">SolarWinds</span>
           <span class="skill-pill">Tenable</span>
           <span class="skill-pill">CyberArk</span>
           <span class="skill-pill">Okta SSO</span>
           <span class="skill-pill">SOC2</span>
-          <span class="skill-pill">JIRA</span>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- CURRENTLY LEARNING -->
+<section id="learning">
+  <div class="reveal">
+    <p class="section-label">Active Upskilling</p>
+    <h2 class="section-title">Currently<br>Learning</h2>
+  </div>
+  <p class="reveal" style="font-size:0.9rem; color:var(--muted2); max-width:600px; margin-bottom:0;">15 years of infrastructure depth — now adding cloud-native tooling. These are hands-on, not just watched.</p>
+  <div class="learning-grid reveal">
+    <div class="learning-card">
+      <div class="learning-icon">🏗</div>
+      <div>
+        <div class="learning-name">Terraform</div>
+        <div class="learning-desc">Infrastructure-as-code for AWS and Azure — provisioning VMs, networking, and storage declaratively. Applying IaC thinking to environments I've operated manually for years.</div>
+        <span class="learning-status">↳ personal projects</span>
+      </div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-icon">🐳</div>
+      <div>
+        <div class="learning-name">Docker & Kubernetes</div>
+        <div class="learning-desc">Containerising applications, writing Dockerfiles, and exploring K8s for orchestration. Understanding the runtime layer that sits above the infrastructure I manage.</div>
+        <span class="learning-status">↳ personal projects</span>
+      </div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-icon">⚡</div>
+      <div>
+        <div class="learning-name">GitHub Actions & CI/CD</div>
+        <div class="learning-desc">Building automated pipelines for test, build, and deploy workflows. Extending existing Git and Octopus Deploy experience into full pipeline automation.</div>
+        <span class="learning-status">↳ personal projects</span>
+      </div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-icon">🔷</div>
+      <div>
+        <div class="learning-name">Microsoft Azure</div>
+        <div class="learning-desc">Azure fundamentals — compute, storage, networking, and IAM. Complementing AWS expertise with Azure to cover the hybrid and multi-cloud landscape.</div>
+        <span class="learning-status">↳ studying</span>
+      </div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-icon">🤖</div>
+      <div>
+        <div class="learning-name">Ansible</div>
+        <div class="learning-desc">Configuration management and automation playbooks for Linux and Windows. Bridges directly from PowerShell scripting experience into declarative infrastructure management.</div>
+        <span class="learning-status">↳ used at Verizon Connect + studying</span>
+      </div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-icon">🎓</div>
+      <div>
+        <div class="learning-name">AWS SAA-C03</div>
+        <div class="learning-desc">Solutions Architect Associate certification — formalising hands-on AWS experience with structured architectural best practices across compute, storage, and networking.</div>
+        <span class="learning-status">↳ in progress</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- AWARDS -->
 <div style="background: var(--surface);">
@@ -1713,15 +1883,15 @@
       </div>
     </div>
 
-    <div class="cert-card">
+    <div class="cert-card cert-expired">
       <div class="cert-logo">
         <img src="https://logo.clearbit.com/vmware.com" alt="VMware" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="cert-logo-fallback cert-vmware-fb" style="display:none">VCP</div>
       </div>
       <div class="cert-info">
-        <div class="cert-name">VMware Certified Professional — vSphere 4</div>
+        <div class="cert-name">VMware Certified Professional — vSphere 4 <span class="cert-status-badge expired">Expired</span></div>
         <div class="cert-issuer">VMware</div>
-        <div class="cert-date">Issued Aug 2010</div>
+        <div class="cert-date cert-date-expired">Issued 2014 · VCP4-DCV</div>
       </div>
     </div>
 
@@ -1737,15 +1907,15 @@
       </div>
     </div>
 
-    <div class="cert-card">
+    <div class="cert-card cert-expired">
       <div class="cert-logo">
         <img src="https://logo.clearbit.com/ibm.com" alt="IBM" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="cert-logo-fallback cert-ibm-fb" style="display:none">IBM</div>
       </div>
       <div class="cert-info">
-        <div class="cert-name">IBM Certified Deployment Professional — Tivoli Storage Productivity Center 4.1</div>
-        <div class="cert-issuer">IBM</div>
-        <div class="cert-date">Issued Mar 2010</div>
+        <div class="cert-name">IBM Certified Deployment Professional — Tivoli Storage Productivity Center 4.1 <span class="cert-status-badge retired">Product Retired</span></div>
+        <div class="cert-issuer">IBM · Succeeded by IBM Spectrum Control</div>
+        <div class="cert-date cert-date-expired">Issued Mar 2010 · TPC 4.x support ended</div>
       </div>
     </div>
 
@@ -1809,10 +1979,10 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">Deepak Samraj Devaraj</div>
-  <div style="font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted2);">Senior Infrastructure Engineer · Dublin, Ireland</div>
+  <div style="font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted2);">Infrastructure & DevOps Engineer · Dublin, Ireland</div>
   <div class="footer-links">
     <a href="https://linkedin.com/in/deepaksam" target="_blank">LinkedIn</a>
-    <a href="https://github.com/deepaksamraj" target="_blank">GitHub</a>
+    <a href="https://github.com/deepaksam" target="_blank">GitHub</a>
     <button class="footer-contact-btn" onclick="document.getElementById('contactModal').classList.add('open')">Get in Touch</button>
   </div>
   <p class="footer-note">
@@ -1832,7 +2002,7 @@
     <h3 class="modal-title">Get in Touch</h3>
     <p class="modal-subtitle">I'll get back to you via email — usually within a day.</p>
 
-    <form class="contact-form" action="https://formspree.io/f/xeeradnz" method="POST" onsubmit="handleFormSubmit(event)">
+    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleFormSubmit(event)">
       <div class="form-group">
         <label>Your Name</label>
         <input type="text" name="name" placeholder="Jane Smith" required>
